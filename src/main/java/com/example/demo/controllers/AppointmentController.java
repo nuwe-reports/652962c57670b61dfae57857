@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entities.Appointment;
 import com.example.demo.repositories.AppointmentRepository;
 
+
 @RestController
 @RequestMapping("/api")
 public class AppointmentController {
 
     @Autowired
     AppointmentRepository appointmentRepository;
-
+    // Get all Appointments
     @GetMapping("/appointments")
     public ResponseEntity<List<Appointment>> getAllAppointments() {
         List<Appointment> appointments = new ArrayList<>();
@@ -37,7 +38,7 @@ public class AppointmentController {
 
         return new ResponseEntity<>(appointments, HttpStatus.OK);
     }
-
+    // Get Appointment by ID
     @GetMapping("/appointments/{id}")
     public ResponseEntity<Appointment> getAppointmentById(@PathVariable("id") long id) {
         Optional<Appointment> appointment = appointmentRepository.findById(id);
@@ -48,7 +49,7 @@ public class AppointmentController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    // Create Appointment
     @PostMapping("/appointment")
     public ResponseEntity<List<Appointment>> createAppointment(@RequestBody Appointment appointment) {
         /**
@@ -72,11 +73,11 @@ public class AppointmentController {
         }
         //Create the new appointment if not problem was found
         appointmentRepository.save(appointment);
-        //Retunr a is ok response
+        //Return an is ok response
         return new ResponseEntity<>(HttpStatus.valueOf(200));
 
     }
-
+    // Delete Appointment by ID
     @DeleteMapping("/appointments/{id}")
     public ResponseEntity<HttpStatus> deleteAppointment(@PathVariable("id") long id) {
 
@@ -91,7 +92,7 @@ public class AppointmentController {
         return new ResponseEntity<>(HttpStatus.OK);
 
     }
-
+    // Delete all Appointments
     @DeleteMapping("/appointments")
     public ResponseEntity<HttpStatus> deleteAllAppointments() {
         appointmentRepository.deleteAll();

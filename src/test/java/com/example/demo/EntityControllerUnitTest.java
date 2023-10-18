@@ -28,6 +28,9 @@ import com.example.demo.repositories.PatientRepository;
 import com.example.demo.repositories.RoomRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Unit test class for the DoctorController
+ */
 @WebMvcTest(DoctorController.class)
 class DoctorControllerUnitTest {
 
@@ -40,6 +43,11 @@ class DoctorControllerUnitTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    /**
+     * A test case that verifies the creation of a new Doctor.
+     *
+     * @throws Exception if an exception occurs during the test
+     */
     @Test
     public void shouldCreateDoctor() throws Exception {
         Doctor newDoctor = new Doctor("Maria", "Zambrano", 30, "maria@example.com");
@@ -50,6 +58,11 @@ class DoctorControllerUnitTest {
                 .andExpect(status().isOk());
     }
 
+    /**
+     * A test to verify that creating a doctor with null values throws an exception.
+     *
+     * @throws Exception if an error occurs
+     */
     @Test
     public void shouldNotCreateDoctor() throws Exception {
 
@@ -61,6 +74,12 @@ class DoctorControllerUnitTest {
                 .andExpect(status().isBadRequest());
     }
 
+    /**
+     * This method is a test case that verifies the behavior of the
+     * 'shouldGetAllDoctors' method.
+     *
+     * @throws Exception if an exception occurs during the test
+     */
     @Test
     public void shouldGetAllDoctors() throws Exception {
 
@@ -70,6 +89,11 @@ class DoctorControllerUnitTest {
                 .andExpect(status().isOk());
     }
 
+    /**
+     * Test case to verify the functionality of retrieving a doctor by their ID.
+     *
+     * @throws Exception If an exception occurs during the test.
+     */
     @Test
     public void shouldGetDoctorById() throws Exception {
 
@@ -88,6 +112,11 @@ class DoctorControllerUnitTest {
                 .andExpect(status().isOk());
     }
 
+    /**
+     * A test case that verifies the behavior of the "shouldGetNoDoctors" method.
+     *
+     * @throws Exception if an exception occurs during the test
+     */
     @Test
     public void shouldGetNoDoctors() throws Exception {
 
@@ -97,6 +126,11 @@ class DoctorControllerUnitTest {
                 .andExpect(status().isNoContent());
     }
 
+    /**
+     * Test case for the shouldGetNoDoctorsById() method.
+     *
+     * @throws Exception
+     */
     @Test
     public void shouldGetNoDoctorsById() throws Exception {
 
@@ -107,6 +141,11 @@ class DoctorControllerUnitTest {
 
     }
 
+    /**
+     * Deletes a doctor by their ID.
+     *
+     * @throws Exception if an exception occurs during the deletion process
+     */
     @Test
     public void shouldDeleteDoctorById() throws Exception {
 
@@ -125,6 +164,12 @@ class DoctorControllerUnitTest {
                 .andExpect(status().isOk());
     }
 
+    /**
+     * A test case that verifies the behavior when attempting to delete a doctor
+     * that does not exist.
+     *
+     * @throws Exception if an error occurs during the test
+     */
     @Test
     public void shouldNotDeleteDoctor() throws Exception {
 
@@ -135,6 +180,11 @@ class DoctorControllerUnitTest {
 
     }
 
+    /**
+     * A description of the entire Java function.
+     *
+     * @throws Exception description of the exception that can be thrown
+     */
     @Test
     public void shouldDeleteDoctors() throws Exception {
         List<Doctor> doctors = new ArrayList<Doctor>();
@@ -142,6 +192,10 @@ class DoctorControllerUnitTest {
                 .andExpect(status().isOk());
     }
 }
+
+/**
+ * This class is a test class for the PatientController
+ */
 
 @WebMvcTest(PatientController.class)
 class PatientControllerUnitTest {
@@ -155,6 +209,11 @@ class PatientControllerUnitTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    /**
+     * A method to test the functionality of retrieving patients from the API.
+     *
+     * @throws Exception in case of an exception during the test
+     */
     @Test
     public void shouldGetPatients() throws Exception {
 
@@ -164,6 +223,11 @@ class PatientControllerUnitTest {
                 .andExpect(status().isOk());
     }
 
+    /**
+     * Test case to verify that the API returns no patients.
+     *
+     * @throws Exception if an error occurs during the test
+     */
     @Test
     public void shouldGetNoPatients() throws Exception {
         List<Patient> patients = new ArrayList<Patient>();
@@ -172,6 +236,11 @@ class PatientControllerUnitTest {
                 .andExpect(status().isNoContent());
     }
 
+    /**
+     * This function is a test case that verifies the creation of a new patient.
+     *
+     * @throws Exception if an error occurs during the test
+     */
     @Test
     public void shouldCreatePatient() throws Exception {
 
@@ -183,6 +252,11 @@ class PatientControllerUnitTest {
                 .andExpect(status().isOk());
     }
 
+    /**
+     * Test case for the shouldGetPatientById() function.
+     *
+     * @throws Exception if an exception occurs during the test
+     */
     @Test
     public void shouldGetPatientById() throws Exception {
 
@@ -202,6 +276,12 @@ class PatientControllerUnitTest {
 
     }
 
+    /**
+     * A test case that verifies that creating a patient with invalid data returns a
+     * bad request status.
+     *
+     * @throws Exception if an error occurs during the test
+     */
     @Test
     public void shouldNoCreatePatient() throws Exception {
 
@@ -213,6 +293,11 @@ class PatientControllerUnitTest {
                 .andExpect(status().isBadRequest());
     }
 
+    /**
+     * Test case for the shouldGetNoPatientById function.
+     *
+     * @throws Exception if an error occurs during the test
+     */
     @Test
     public void shouldGetNoPatientById() throws Exception {
 
@@ -221,6 +306,12 @@ class PatientControllerUnitTest {
         mockMvc.perform(get("/api/patients/" + patientId))
                 .andExpect(status().isNotFound());
     }
+
+    /**
+     * A test case that verifies the deletion of a patient by their ID.
+     *
+     * @throws Exception if an error occurs during the test
+     */
 
     @Test
     public void shouldDeletePatientById() throws Exception {
@@ -240,6 +331,12 @@ class PatientControllerUnitTest {
                 .andExpect(status().isOk());
     }
 
+    /**
+     * A test case that verifies the behavior when attempting to delete a patient
+     * that does not exist.
+     * 
+     * @throws Exception
+     */
     @Test
     public void shouldNotDeletePatient() throws Exception {
 
@@ -249,13 +346,23 @@ class PatientControllerUnitTest {
                 .andExpect(status().isNotFound());
     }
 
+    /**
+     * A test case that verifies the deletion of all patients.
+     * 
+     * @throws Exception
+     */
     @Test
     public void shouldDelteAllPatients() throws Exception {
-        
+
         mockMvc.perform(delete("/api/patients"))
                 .andExpect(status().isOk());
     }
 }
+
+/**
+ * This is a test case for the RoomController
+ * 
+ */
 
 @WebMvcTest(RoomController.class)
 class RoomControllerUnitTest {
@@ -269,6 +376,11 @@ class RoomControllerUnitTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    /**
+     * This function is a test case that verifies the creation of a new room.
+     * 
+     * @throws Exception
+     */
     @Test
     public void shouldGetRooms() throws Exception {
 
@@ -278,6 +390,11 @@ class RoomControllerUnitTest {
                 .andExpect(status().isOk());
     }
 
+    /**
+     * Test case to verify that the API returns no rooms.
+     * 
+     * @throws Exception
+     */
     @Test
     public void shouldGetNoRooms() throws Exception {
         List<Room> rooms = new ArrayList<Room>();
@@ -286,6 +403,11 @@ class RoomControllerUnitTest {
                 .andExpect(status().isNoContent());
     }
 
+    /**
+     * This function is a test case that verifies the creation of a new room.
+     * 
+     * @throws Exception
+     */
     @Test
     public void shouldCreateRoom() throws Exception {
 
@@ -297,6 +419,11 @@ class RoomControllerUnitTest {
                 .andExpect(status().isOk());
     }
 
+    /**
+     * Test case to verify that the API returns a room.
+     * 
+     * @throws Exception
+     */
     @Test
     public void shouldGetRoomName() throws Exception {
 
@@ -314,6 +441,11 @@ class RoomControllerUnitTest {
 
     }
 
+    /**
+     * Test case to verify that the API returns no room.
+     * 
+     * @throws Exception
+     */
     @Test
     public void shouldNoCreateRoom() throws Exception {
 
@@ -325,6 +457,11 @@ class RoomControllerUnitTest {
                 .andExpect(status().isBadRequest());
     }
 
+    /**
+     * Test case to verify that the API returns no room.
+     * 
+     * @throws Exception
+     */
     @Test
     public void shouldGetNoRoombyName() throws Exception {
 
@@ -334,6 +471,11 @@ class RoomControllerUnitTest {
                 .andExpect(status().isNotFound());
     }
 
+    /**
+     * Test case to verify that the API deletes a room.
+     * 
+     * @throws Exception
+     */
     @Test
     public void shouldDeleteRoomByName() throws Exception {
 
@@ -350,6 +492,12 @@ class RoomControllerUnitTest {
                 .andExpect(status().isOk());
     }
 
+    /**
+     * Test case to verify that the API deletes no room.
+     * 
+     * @throws Exception
+     */
+
     @Test
     public void shouldNotDeleteRoom() throws Exception {
 
@@ -359,9 +507,14 @@ class RoomControllerUnitTest {
                 .andExpect(status().isNotFound());
     }
 
+    /**
+     * Test case to verify that the API deletes all rooms.
+     * 
+     * @throws Exception
+     */
     @Test
     public void shouldDeleteAllPatients() throws Exception {
-        
+
         mockMvc.perform(delete("/api/rooms"))
                 .andExpect(status().isOk());
     }

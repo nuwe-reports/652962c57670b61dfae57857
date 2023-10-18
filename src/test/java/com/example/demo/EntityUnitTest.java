@@ -40,12 +40,6 @@ class EntityUnitTest {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
 
-    /**
-     * TODO
-     * Implement tests for each Entity class: Doctor, Patient, Room and Appointment.
-     * Make sure you are as exhaustive as possible. Coverage is checked ;)
-     */
-
     // Create objects for d1, p1 ,r1 and a1,a2 and a3
     @BeforeAll
     public void setup() {
@@ -157,7 +151,7 @@ class EntityUnitTest {
 
     // Test for appointment constructor
     @Test
-    public void should_create_an_appointment() {        
+    public void should_create_an_appointment() {
 
         d1 = new Doctor("Juan", "Perez Romero", 35, "juan.perez@email.com");
         p1 = new Patient("Maria", "Ponce Lopez", 52, "maria.ponce@email.com");
